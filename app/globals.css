@@ -1,0 +1,251 @@
+:root {
+  --bg: #060807;
+  --bg-soft: #0a0d0b;
+  --accent: #00dc82;
+  --accent-dim: rgba(0, 220, 130, 0.12);
+  --accent-line: rgba(0, 220, 130, 0.25);
+  --text: #e8f5ee;
+  --muted: #6b7f74;
+  --border: rgba(0, 220, 130, 0.14);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #04120b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 220, 130, 0.3);
+  border-radius: 6px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 32px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-tag::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 56px;
+}
+
+.mono {
+  font-family: var(--font-mono), monospace;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 80px 20px;
+  }
+}
+
+/* ---------- animation system (pure CSS, clock-driven) ---------- */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinRev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes sonar {
+  from {
+    r: 40;
+    opacity: 0.5;
+  }
+  to {
+    r: 265;
+    opacity: 0;
+  }
+}
+
+@keyframes corePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes packetRun {
+  from {
+    left: -60px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes stageGlow {
+  0%,
+  30%,
+  100% {
+    border-color: rgba(0, 220, 130, 0.2);
+    box-shadow: 0 0 0 rgba(0, 220, 130, 0);
+  }
+  12% {
+    border-color: rgba(0, 220, 130, 1);
+    box-shadow: 0 0 24px rgba(0, 220, 130, 0.35);
+  }
+}
+
+@keyframes ringPing {
+  from {
+    box-shadow: 0 0 0 0 rgba(0, 220, 130, 0.4);
+  }
+  to {
+    box-shadow: 0 0 0 12px rgba(0, 220, 130, 0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.fade-scale {
+  opacity: 0;
+  animation: fadeScale 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* scroll reveal — visible by default, hidden only when JS marks it */
+.reveal {
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0s);
+}
+.reveal.pre {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* bars that grow when their .reveal parent comes into view */
+.growx {
+  transform-origin: left center;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--bd, 0s);
+}
+.reveal.pre .growx {
+  transform: scaleX(0);
+}
+
+.hover-card {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.hover-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 220, 130, 0.5) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
