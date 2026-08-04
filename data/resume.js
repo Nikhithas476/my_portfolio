@@ -31,13 +31,15 @@ export const metrics = [
   { value: 3, suffix: "", label: "Certifications" },
 ];
 
+/* years = experience with the area (gauge is scaled to maxYears) */
+export const maxYears = 6;
 export const skillGroups = [
-  { name: "Cloud", level: 95, items: ["AWS EC2 · VPC · SSM", "Azure VM · VNet · Key Vault"] },
-  { name: "Containers", level: 92, items: ["Kubernetes", "Docker", "Helm", "Ingress"] },
-  { name: "CI / CD", level: 90, items: ["Jenkins", "Azure DevOps", "GitHub Actions", "GitLab CI"] },
-  { name: "IaC", level: 93, items: ["Terraform", "CloudFormation", "ARM Templates"] },
-  { name: "Observability", level: 88, items: ["Prometheus", "Grafana", "Datadog", "ELK"] },
-  { name: "Scripting", level: 85, items: ["Python", "Bash", "PowerShell"] },
+  { name: "Cloud", years: 5, items: ["AWS EC2 · VPC · SSM", "Azure VM · VNet · Key Vault"] },
+  { name: "Containers", years: 4, items: ["Kubernetes", "Docker", "Helm", "Ingress"] },
+  { name: "CI / CD", years: 5, items: ["Jenkins", "Azure DevOps", "GitHub Actions", "GitLab CI"] },
+  { name: "IaC", years: 5, items: ["Terraform", "CloudFormation", "ARM Templates"] },
+  { name: "Observability", years: 4, items: ["Prometheus", "Grafana", "Datadog", "ELK"] },
+  { name: "Scripting", years: 5, items: ["Python", "Bash", "PowerShell"] },
 ];
 
 /*
@@ -91,6 +93,17 @@ export const experience = [
       "Azure", "ARM", "Nginx", "Entra ID",
       "Key Vault", "Log Analytics", "GitLab CI", "Bash",
     ],
+  },
+];
+
+export const education = [
+  {
+    school: "University of Central Missouri",
+    place: "Warrensburg, MO",
+    degree: "Master of Science in Computer Science",
+    period: "Aug 2022 — May 2024",
+    gpa: "3.4",
+    image: "ucm/ms-computer-science:2024",
   },
 ];
 

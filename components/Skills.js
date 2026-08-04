@@ -1,6 +1,6 @@
 "use client";
 import Reveal from "./Reveal";
-import { skillGroups } from "@/data/resume";
+import { skillGroups, maxYears } from "@/data/resume";
 
 /* Skill "capacity gauges" — segmented utilization bars styled like a
  * monitoring dashboard. */
@@ -39,23 +39,23 @@ export default function Skills() {
               >
                 <span style={{ fontWeight: 700, fontSize: 18 }}>{g.name}</span>
                 <span className="mono" style={{ color: "var(--accent)", fontSize: 13 }}>
-                  {g.level}%
+                  {g.years}+ yrs
                 </span>
               </div>
 
-              {/* segmented gauge */}
-              <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-                {Array.from({ length: 20 }).map((_, s) => {
-                  const lit = (s + 1) * 5 <= g.level;
+              {/* segmented gauge — one segment per year, scaled to maxYears */}
+              <div style={{ display: "flex", gap: 5, marginBottom: 18 }}>
+                {Array.from({ length: maxYears }).map((_, s) => {
+                  const lit = s + 1 <= g.years;
                   return (
                     <span
                       key={s}
                       style={{
                         flex: 1,
                         height: 18,
-                        borderRadius: 2,
+                        borderRadius: 3,
                         background: lit ? "var(--accent)" : "var(--accent-dim)",
-                        opacity: lit ? 0.55 + (s / 20) * 0.45 : 1,
+                        opacity: lit ? 0.5 + ((s + 1) / maxYears) * 0.5 : 1,
                       }}
                     />
                   );

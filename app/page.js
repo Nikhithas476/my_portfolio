@@ -4,6 +4,7 @@ import Pipeline from "@/components/Pipeline";
 import Metrics from "@/components/Metrics";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 import Certs from "@/components/Certs";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Metrics />
       <Skills />
       <Experience />
+      <Education />
       <Certs />
     </main>
   );
